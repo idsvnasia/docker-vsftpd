@@ -167,3 +167,38 @@ echo -e "myuser\nmypass" >> /etc/vsftpd/virtual_users.txt
 exit
 docker restart vsftpd
 ```
+#
+#
+#
+# How to connect FTP client ""Filezilla"" to FTP server:
+ 
+1) Downlaod FileZilla at url:
+https://filezilla-project.org/download.php?type=client#close
+
+2) Run Fiezilla on your Windows:
+
+3) Fill out "Host", "" Username"", "" Paswword"" & "" Port"" 
+
+4) Click "" Quickconnect"" 
+
+
+#
+#
+Manually add a new FTP user to an existing container:
+
+docker exec -i -t vsftpd bash
+mkdir /home/vsftpd/myuser
+echo -e "myuser\nmypass" >> /etc/vsftpd/virtual_users.txt
+/usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
+exit
+docker restart vsftpd
+#
+#
+
+vsftpd-deployment.yaml  & vsftp-service.yaml are store in directory:
+
+/home/stackops/docker-vsftpd/kubernetes
+
+Dockerfile are store in directory:
+
+/home/stackops/docker-vsftpd/
