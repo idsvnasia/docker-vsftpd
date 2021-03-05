@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vsftpd
+spec:
+  selector:
+    matchLabels:
+      run: vsftpd
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: vsftpd
+    spec:
+      containers:
+      - name: vsftpd
+        image:  fauria/vsftpd
+        ports:
+        - containerPort: 30021
